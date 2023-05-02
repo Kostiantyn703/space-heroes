@@ -1,29 +1,36 @@
 #include "engine.h"
 
-#include <chrono>
+//#include <chrono>
 #include <iostream>
+#include <memory>
+
+#include "game.h"
 
 using namespace std::chrono;
 
-engine::engine()
+engine::engine(const game &game_instance)
 {
+	m_game = std::make_unique<game>(game_instance);
 	std::cout << "Engine initialized" << std::endl;
+	launch_time = steady_clock::now();
 }
 
 engine::~engine()
 {
 	std::cout << "Engine destroyed" << std::endl;
+	shutdown_time = steady_clock::now();
+	duration<float> elapsed_time = shutdown_time - launch_time;
+	std::cout << "Engine worked for " << elapsed_time.count() << " seconds." << std::endl;
 };
 
 void engine::run()
 {
-	float time_to_work = 3.f;
-	duration<float> elapsed_time;
-	steady_clock::time_point start_time = steady_clock::now();
-	while (elapsed_time.count() < time_to_work)
+	float time_to_work = 50000.f;
+	while (time_to_work > 0)
 	{
-		steady_clock::time_point current_time = steady_clock::now();
-		elapsed_time = current_time - start_time;
-		std::cout << "Elapsed time " << elapsed_time.count() << std::endl;
+		m_game->process_input();
+		m_game->update();
+		m_game->render();
+		time_to_work -= 0.002f;
 	}
 }
