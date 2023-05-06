@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+//
 class game
 {
 friend class engine;
@@ -9,7 +10,7 @@ public:
 	~game();
 
 	bool is_active()	const	{ return active; }
-	bool set_active(bool value)	{ active = value; }
+	void set_active(bool value)	{ active = value; }
 private:
 	bool active;
 // game loop defaults

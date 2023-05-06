@@ -3,9 +3,11 @@
 .vs/*
 Debug/*
 x64/*
+external/*
 
 space_heroes/Debug/*
 space_heroes/x64/*
 space_heroes/*.vcxproj
 space_heroes/*.vcxproj.filters
 space_heroes/*.vcxproj.user
+space_heroes/*.dll

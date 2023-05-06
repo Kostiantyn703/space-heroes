@@ -28,6 +28,9 @@ engine::engine(const game &game_instance)
 
 engine::~engine()
 {
+	SDL_DestroyWindow(m_window);
+	m_window = nullptr;
+
 	std::cout << "Engine destroyed" << std::endl;
 	shutdown_time = steady_clock::now();
 	duration<float> elapsed_time = shutdown_time - launch_time;
@@ -38,7 +41,10 @@ void engine::run()
 {
 	while (m_game->is_active())
 	{
-		m_controller->handle_input();
+		command* current_command = m_controller->handle_input();
+		if (current_command) {
+			current_command->execute(*m_game.get());
+		}
 		m_game->process_input();
 		m_game->update();
 		m_game->render();
