@@ -1,7 +1,7 @@
 #include "engine.h"
 #include "game.h"
 
-int main()
+int main(int argc, char* args[])
 {
 	const game *game_instance = new game;
 	engine game_engine(*game_instance);

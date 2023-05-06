@@ -4,9 +4,12 @@
 #include <chrono>
 #include <memory>
 
+#include "SDL.h"
+
 using namespace std::chrono;
 
 class game;
+class input_handler;
 
 class engine
 {
@@ -29,11 +32,17 @@ private:
 	time_stamp shutdown_time;
 
 	std::unique_ptr<game> m_game;
+	std::unique_ptr<input_handler> m_controller;
+
+	//The window we'll be rendering to
+	SDL_Window* m_window = nullptr;
+	//The surface contained by the window
+	SDL_Surface* m_screen_surface = nullptr;
 	// sound manager
 	// rendered
 	// particle system
-	// something else
 	// logger
 	// resource manager
+	// collision manger
 };
 #endif // ENGINE_H

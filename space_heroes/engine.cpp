@@ -1,15 +1,27 @@
 #include "engine.h"
 
+#include "SDL.h"
+
 #include <iostream>
 #include <memory>
 
 #include "game.h"
+#include "input_handler.h"
 
 using namespace std::chrono;
 
+constexpr unsigned int SCREEN_WIDTH = 800;
+constexpr unsigned int SCREEN_HEIGHT = 600;
+
 engine::engine(const game &game_instance)
 {
+
+	m_window = SDL_CreateWindow("Space Heroes", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	m_screen_surface = SDL_GetWindowSurface(m_window);
+	SDL_Init(SDL_INIT_VIDEO);
 	m_game = std::make_unique<game>(game_instance);
+	m_controller = std::make_unique<input_handler>();
+
 	std::cout << "Engine initialized" << std::endl;
 	launch_time = steady_clock::now();
 }
@@ -24,12 +36,11 @@ engine::~engine()
 
 void engine::run()
 {
-	float time_to_work = 50000.f;
-	while (time_to_work > 0)
+	while (m_game->is_active())
 	{
+		m_controller->handle_input();
 		m_game->process_input();
 		m_game->update();
 		m_game->render();
-		time_to_work -= 0.002f;
 	}
 }

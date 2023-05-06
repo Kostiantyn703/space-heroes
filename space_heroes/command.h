@@ -1,5 +1,8 @@
 #ifndef COMMAND_H
 #define COMMAND_H
+
+#include <iostream>
+
 /*
 	Command is an interface to derive from.
 	Concrete commands are:
@@ -11,18 +14,19 @@
 class command
 {
 public:
-	virtual ~command() {}
+	// logging
+	virtual ~command() {	std::cout << "Command destroyed" << std::endl;	}
 	virtual void execute() = 0;
 };
 
 class primary_command : public command
 {
 public:
-	virtual execute() {};
+	virtual void execute() { std::cout << "Primary command pressed" << std:: endl; };
 };
 
 class secondary_command : public command
 {
-	virtual execute() {};
+	virtual void execute() { std::cout << "Secondary command pressed" << std::endl; };
 };
 #endif // COMMAND_H

@@ -3,6 +3,7 @@
 #include <iostream>
 
 game::game()
+	:	active(true)
 {
 	std::cout << "Game constructed" << std::endl;
 }
@@ -14,7 +15,7 @@ game::~game()
 
 void game::process_input()
 {
-
+	
 }
 
 void game::update()
