@@ -2,7 +2,7 @@
 #define COMMAND_H
 
 #include "SDL.h"
-
+#include "game.h"
 /*
 	Command is an interface to derive from.
 	Concrete commands are:
@@ -15,13 +15,14 @@ class command
 public:
 	// logging
 	virtual ~command() {	SDL_Log("Command destroyed");	}
-	virtual void execute() = 0;
+	virtual void execute(game &game_instatnce) = 0;
 };
 
 class primary_command : public command
 {
 public:
-	virtual void execute() override
+	~primary_command() override {	SDL_Log("Primary Command destroyed");	}
+	virtual void execute(game &game_instatnce) override
 	{
 		SDL_Log("Primary command pressed");
 	}
@@ -30,9 +31,11 @@ public:
 class secondary_command : public command
 {
 public:
-	virtual void execute() override
+	~secondary_command() override { SDL_Log("Secondary Command destroyed"); }
+	virtual void execute(game &game_instatnce) override
 	{
 		SDL_Log("Secondary command pressed");
+		game_instatnce.set_active(false);
 	}
 };
 #endif // COMMAND_H

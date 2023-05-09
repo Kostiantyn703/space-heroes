@@ -20,27 +20,15 @@ class engine
 {
 using time_stamp = std::chrono::steady_clock::time_point;
 public:
+	engine() = default;
 	~engine();
-
-	// singleton method
-	static engine &instance()
-	{
-		static engine *engine_instance = new engine();
-		return *engine_instance;
-	}
 
 	// call only once in main()
 	void init(const game &game_instance);
 	void run();
 
-	bool is_active()	const { return active; }
-	void set_active(bool value) { active = value; }
-
 	void change_background();
 private:
-	engine() = default;
-
-	bool active;
 	// timers
 	time_stamp launch_time;
 	time_stamp shutdown_time;

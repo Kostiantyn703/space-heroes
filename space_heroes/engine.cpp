@@ -13,8 +13,6 @@ constexpr unsigned int SCREEN_HEIGHT = 600;
 
 void engine::init(const game &game_instance)
 {
-	set_active(true);
-
 	m_window = SDL_CreateWindow("Space Heroes", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
 	m_screen_surface = SDL_GetWindowSurface(m_window);
@@ -42,12 +40,12 @@ engine::~engine()
 
 void engine::run()
 {
-	while (is_active())
+	while (m_game->is_active())
 	{
 		// input
 		command* current_command = m_controller->handle_input();
 		if (current_command) {
-			current_command->execute();
+			current_command->execute(*m_game.get());
 		}
 		// update
 		// render

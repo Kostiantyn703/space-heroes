@@ -4,6 +4,7 @@
 Debug/*
 x64/*
 external/*
+images/*
 
 space_heroes/Debug/*
 space_heroes/x64/*

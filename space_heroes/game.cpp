@@ -2,6 +2,7 @@
 #include "SDL.h"
 
 game::game()
+	: active(true)
 {
 	SDL_Log("Game constructed");
 }
