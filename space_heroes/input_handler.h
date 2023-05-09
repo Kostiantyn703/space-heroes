@@ -2,8 +2,9 @@
 #define INPUT_HANDLER_H
 
 #include <map>
-#include <memory>
 #include "SDL.h"
+
+#include <memory>
 
 #include "command.h"
 

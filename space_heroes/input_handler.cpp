@@ -1,9 +1,9 @@
 #include "input_handler.h"
 
-#include <memory>
-#include <iostream>
-#include <utility>
 #include "SDL.h"
+
+#include <memory>
+#include <utility>
 
 #include "command.h"
 

@@ -1,16 +1,14 @@
 #include "game.h"
-
-#include <iostream>
+#include "SDL.h"
 
 game::game()
-	:	active(true)
 {
-	std::cout << "Game constructed" << std::endl;
+	SDL_Log("Game constructed");
 }
 
 game::~game()
 {
-	std::cout << "Game destroyed" << std::endl;
+	SDL_Log("Game destroyed");
 }
 
 void game::process_input()
