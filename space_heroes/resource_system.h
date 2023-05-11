@@ -28,7 +28,7 @@ public:
 
 	void load_texture(SDL_Surface *in_surface, SDL_Renderer &in_renderer);
 
-	SDL_Texture *get_background() const { return m_background; }
+	SDL_Texture &get_background() const { return *m_background; }
 private:
 	SDL_Texture* m_background;
 	std::vector<std::string> a_tex_paths;

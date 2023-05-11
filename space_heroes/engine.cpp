@@ -22,6 +22,8 @@ void engine::init(const game &game_instance)
 	m_controller = std::make_unique<input_handler>();
 	m_resource = std::make_unique<resource_system>();
 
+	m_resource->load_texture(m_screen_surface, *m_renderer);
+
 	launch_time = steady_clock::now();
 	SDL_Log("Engine initialized");
 }
@@ -50,7 +52,8 @@ void engine::run()
 		// update
 		// render
 		SDL_RenderClear(m_renderer);
-		SDL_RenderCopy(m_renderer, m_resource->get_background(), nullptr, nullptr);
+		SDL_RenderCopy(m_renderer, &m_resource->get_background(), nullptr, nullptr);
+		SDL_RenderPresent(m_renderer);
 	}
 }
 
