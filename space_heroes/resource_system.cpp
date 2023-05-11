@@ -16,7 +16,7 @@ resource_system::~resource_system()
 
 void resource_system::init()
 {
-	a_tex_paths.push_back(background01);
+	//a_tex_paths.push_back(background01);
 	a_tex_paths.push_back(background02);
 	a_tex_paths.push_back(background03);
 	a_tex_paths.push_back(background04);
@@ -24,7 +24,6 @@ void resource_system::init()
 
 void resource_system::load_texture(SDL_Surface *in_surface, SDL_Renderer &in_renderer)
 {
-	curr_index = 2;
 	if (!m_background) {
 		in_surface = IMG_Load(a_tex_paths[curr_index].c_str());
 	}

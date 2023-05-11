@@ -22,9 +22,15 @@ input_handler::~input_handler()
 
 command *input_handler::handle_input()
 {
-	while (SDL_PollEvent(&m_current_event) != 0) {
-		if (m_current_event.type == SDL_KEYDOWN) {
-			return m_commands.find(m_current_event.key.keysym.sym)->second.get();
+	while (SDL_PollEvent(&m_current_event) != 0)
+	{
+		if (m_current_event.type == SDL_KEYDOWN)
+		{
+			auto it = m_commands.find(m_current_event.key.keysym.sym);
+			if (it != m_commands.end())
+			{
+				return it->second.get();
+			}
 		}
 	}
 	return nullptr;

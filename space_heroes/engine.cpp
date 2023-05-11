@@ -46,8 +46,9 @@ void engine::run()
 	{
 		// input
 		command* current_command = m_controller->handle_input();
-		if (current_command) {
-			current_command->execute(*m_game.get());
+		if (current_command)
+		{
+			current_command->execute(*m_game.get(), m_game.get()->get_current_state());
 		}
 		// update
 		// render

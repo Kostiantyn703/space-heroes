@@ -19,6 +19,13 @@ using namespace std::chrono;
 class engine
 {
 using time_stamp = std::chrono::steady_clock::time_point;
+
+// only default constructor is valid case
+// constructors and assignment operators are deleted
+engine(const engine &value) = delete;	// copy constructor
+engine operator=(const engine&value) = delete;	// copy assignment
+engine(engine &&value) = delete;	// move constructor
+engine operator=(engine &&value) = delete;	// move assignment
 public:
 	engine() = default;
 	~engine();
@@ -48,12 +55,5 @@ private:
 	// sound manager
 	// particle system
 	// collision manger
-public:
-	// only default constructor is valid case
-	// constructors and assignment operators are deleted
-	engine(const engine &value)				= delete;	// copy constructor
-	engine operator=(const engine&value)	= delete;	// copy assignment
-	engine(engine &&value)					= delete;	// move constructor
-	engine operator=(engine &&value)		= delete;	// move assignment
 };
 #endif // ENGINE_H

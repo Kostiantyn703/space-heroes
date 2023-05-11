@@ -10,7 +10,7 @@
 #include <string>
 
 // paths
-const std::string background01 = "../images/black.png";
+//const std::string background01 = "../images/black.png";
 const std::string background02 = "../images/blue.png";
 const std::string background03 = "../images/darkPurple.png";
 const std::string background04 = "../images/purple.png";
