@@ -6,6 +6,8 @@
 
 #include "command.h"
 
+class game;
+
 using namespace std::chrono;
 
 constexpr unsigned int SCREEN_WIDTH = 800;
@@ -19,10 +21,11 @@ void engine::init(const game &game_instance)
 	SDL_Init(SDL_INIT_VIDEO);
 
 	m_game = std::make_unique<game>(game_instance);
+	m_game->set_owner(*this);
 	m_controller = std::make_unique<input_handler>();
 	m_resource = std::make_unique<resource_system>();
-
-	m_resource->load_texture(m_screen_surface, *m_renderer);
+	size_t curr_state_id =	m_game->get_current_state().get_id();
+	m_resource->load_texture(m_screen_surface, *m_renderer, curr_state_id);
 
 	launch_time = steady_clock::now();
 	SDL_Log("Engine initialized");
@@ -58,7 +61,8 @@ void engine::run()
 	}
 }
 
-void engine::change_background()
+void engine::on_state_changed()
 {
-
+	size_t curr_state_id = m_game->get_current_state().get_id();
+	m_resource->load_texture(m_screen_surface, *m_renderer, curr_state_id);
 }

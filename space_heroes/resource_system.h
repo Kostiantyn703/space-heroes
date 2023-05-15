@@ -6,7 +6,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
-#include <vector>
+#include <map>
 #include <string>
 
 // paths
@@ -26,12 +26,12 @@ public:
 	
 	void init() override;
 
-	void load_texture(SDL_Surface *in_surface, SDL_Renderer &in_renderer);
+	void load_texture(SDL_Surface *in_surface, SDL_Renderer &in_renderer, const size_t in_state_id);
 
 	SDL_Texture &get_background() const { return *m_background; }
 private:
 	SDL_Texture* m_background;
-	std::vector<std::string> a_tex_paths;
+	std::map<size_t, std::string> map_tex_paths;
 	size_t curr_index;
 };
 

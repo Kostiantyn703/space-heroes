@@ -2,6 +2,7 @@
 #define GAME_H
 
 class game_state;
+class engine;
 
 class game
 {
@@ -16,10 +17,14 @@ public:
 	void set_active(bool value) { active = value; }
 
 	game_state &get_current_state() const { return *current_state; }
-	void set_state(game_state &in_state) { current_state = &in_state; }
+	void set_state(game_state *in_state);
+
+	void set_owner(engine &in_engine) { m_engine = &in_engine; }
 
 private:
 	bool active;
+
+	engine *m_engine;
 
 	game_state* current_state;
 // game loop defaults

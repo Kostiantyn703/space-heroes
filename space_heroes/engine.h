@@ -34,14 +34,13 @@ public:
 	void init(const game &game_instance);
 	void run();
 
-	void change_background();
+	void on_state_changed();
 private:
 	// timers
 	time_stamp launch_time;
 	time_stamp shutdown_time;
 
 	std::unique_ptr<game> m_game;
-
 	std::unique_ptr<input_handler> m_controller;
 
 	//The window we'll be rendering to
