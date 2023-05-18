@@ -47,13 +47,9 @@ void engine::run()
 {
 	while (m_game->is_active())
 	{
-		// input
-		command* current_command = m_controller->handle_input();
-		if (current_command)
-		{
-			current_command->execute(*m_game.get(), m_game.get()->get_current_state());
-		}
+		m_game->process_input(*m_controller.get());
 		// update
+		m_game->update();
 		// render
 		SDL_RenderClear(m_renderer);
 		SDL_RenderCopy(m_renderer, &m_resource->get_background(), nullptr, nullptr);

@@ -43,12 +43,13 @@ private:
 	std::unique_ptr<game> m_game;
 	std::unique_ptr<input_handler> m_controller;
 
+	// ~ render part
 	//The window we'll be rendering to
 	SDL_Window *m_window;
 	//The surface contained by the window
 	SDL_Surface *m_screen_surface;
 	SDL_Renderer *m_renderer;
-	
+	// ~
 	// engine systems
 	std::unique_ptr<resource_system> m_resource;
 	// sound manager

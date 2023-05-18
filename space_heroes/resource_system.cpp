@@ -1,8 +1,7 @@
 #include "resource_system.h"
 
 resource_system::resource_system()
-	:	curr_index{0}
-	,	m_background{nullptr}
+	:	m_background{nullptr}
 {
 	init();
 	SDL_Log("Resource system created");

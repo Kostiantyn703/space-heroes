@@ -3,6 +3,7 @@
 
 class game_state;
 class engine;
+class input_handler;
 
 class game
 {
@@ -28,7 +29,7 @@ private:
 
 	game_state* current_state;
 // game loop defaults
-	void process_input();
+	void process_input(input_handler &in_controller);
 	void update();
 	void render();
 };

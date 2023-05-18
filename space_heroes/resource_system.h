@@ -32,7 +32,6 @@ public:
 private:
 	SDL_Texture* m_background;
 	std::map<size_t, std::string> map_tex_paths;
-	size_t curr_index;
 };
 
 #endif // RESOURCE_SYSTEM_H
